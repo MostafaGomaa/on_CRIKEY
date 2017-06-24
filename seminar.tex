@@ -1,0 +1,125 @@
+% vim:filetype=tex:textwidth=80:shiftwidth=4:softtabstop=4:expandtab:spell
+
+\documentclass
+[a4paper
+,english
+,parskip=half
+,bibliography=totoc
+%,chapterprefix
+%,draft
+]{scrreprt}
+
+\usepackage[automark]{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead{\headmark}
+\ohead{\thepage}
+\setheadsepline{0.4pt}
+
+% Just add (remove) the packages you (don't) need
+\usepackage{amsthm,amsmath,amsfonts,amssymb}
+\usepackage[final]{graphicx}
+\usepackage[english]{babel}
+%\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[round,authoryear]{natbib}
+\usepackage[normal, labelfont={bf}]{caption}
+\usepackage{subfig}
+\usepackage{paralist}
+\usepackage[per-mode=symbol]{siunitx}
+
+\usepackage[textsize=scriptsize]{todonotes}
+
+
+\usepackage{doc}
+\usepackage{blindtext}
+
+
+%%% Title page layout %%%
+% Enter your title, name and matriculation number at the respective places.
+
+\titlehead{\centering\sc
+    Rheinisch-Westf\"alische Technische Hochschule Aachen\\
+    Knowledge-based Systems Group\\
+    Prof.\ Gerhard Lakemeyer, Ph.\,D.
+}
+\subject{
+    \vfill Seminararbeit \vfill
+}
+\title{
+    % Enter your title here:
+    On Formally Undecidable Propositions\\
+    of Principia Mathematica and\\
+    Related Systems
+}
+%\subtitle{Incompleteness Theorem}
+\author{
+    \\
+    \\
+    \\
+    \\
+    % Enter your name and matriculation number here:
+    \sc Kurt G\"odel\\
+    \sc \small Matrikelnummer: 123456
+}
+\publishers{
+    \vfill
+    \small
+    Seminar Dynamics of Knowledge and Belief\\
+    Sommersemester 2014
+}
+\date{}
+
+\begin{document}
+
+\pagestyle{useheadings}
+\pagenumbering{roman}
+\maketitle
+\tableofcontents
+%\listoffigures
+%\listoftables
+\cleardoublepage
+\pagestyle{scrheadings}
+\pagenumbering{arabic}
+
+%%% Begin of seminar %%%
+
+\chapter{Introduction}
+
+This is a template for a seminar paper at the Knowledge Based Systems Group.
+
+\citet{McCarthy1963} first introduced the Situation Calculus.
+Later, \citeauthor{Reiter:KIA} wrote a book on the subject \citep{Reiter:KIA}.
+Note that for the first citation we use the \verb+\citet+ command (\texttt{t}
+for text), for the second one \verb+\citep+ (\texttt{p} for parentheses).
+To make the \BibTeX{} citations occur correctly in the text, run
+\verb+make bib+.
+
+The rest of this paper is organized as follows:
+the next section presents some garbage.
+The next chapter presents further garbage.
+In Chapter~\ref{conclusion} we conclude.
+
+
+\section{Blind Text}
+
+Some blind text follows.
+
+\Blindtext
+
+
+\Blinddocument
+
+
+\chapter{Conclusion} \label{conclusion}
+
+In this seminar paper, we have presented a lot of garbage.
+
+
+%%% End of seminar %%%
+
+\bibliographystyle{plainnat}
+\bibliography{seminar}
+
+\end{document}
+
