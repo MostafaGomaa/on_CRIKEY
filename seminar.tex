@@ -103,34 +103,58 @@
 \chapter{Introduction}
 
 Temporal planning is basically the same problem as classical planning but with time introduced. In Temporal planning classical planning moves closer to scheduling. The combination of ,tow already hard problems, only makes temporal planning harder. Many Approaches has been introduced to attempt of solving the temporal planning problem.
-CRIKEY a temporal planner that separates the logical and temporal reasoning, is main focus of this seminar paper. It attempts to solve the temporal planning problem by breaking it down into two smaller sub-problems. As with the case with most interacting engineering problems, some issues arise and the separation is not always easily achievable.  
+CRIKEY the first temporal planner that separates the logical and temporal reasoning, is main focus of this seminar paper. It attempts to solve the temporal planning problem by breaking it down into two smaller sub-problems. As with the case with most interacting engineering problems, some issues arise and the separation is not always easily achievable.  
 
     \section{The Planning Problem} \label{the_planning_problem}
-    The planning problem is the problem of finding a sequence of actions that lead us from some initial state of the world to a state where some objectives are met. For humans, planning comes very natural. With a purpose of achieving a certain goal, choosing a specific sequence of actions from the space of all possible actions a human can perform, anticipating the outcome of each and ordering them as to meet or avoid some constraints, is a simple every day task for us. Automated Planning is area of Artificial Inelegance that is concerned with choosing and deliberating a sequence of actions, for their desired expected effects. It is concerned with questions like how to represent those actions, to how to model the world they interact with and how to reason about their effects, that would lead eventually to choosing and executing them.
+    The planning problem is the problem of finding a sequence of actions that lead us from some initial state of the world to a state where some objectives are met. For humans, planning comes very natural. With the purpose of achieving a certain goal, choosing a specific sequence of actions from the space of all possible actions a human can perform, anticipating the outcome of each and ordering them as to meet or avoid some constraints, is a simple every day task for us. Automated Planning is area of Artificial Inelegance that is concerned with choosing and deliberating a sequence of actions, for their desired expected effects. It is concerned with questions like how to represent those actions, to how to model the world they interact with and how to reason about their effects, that would lead eventually to choosing and executing them.
     "Planning is the reasoning side of acting" \citep{automated_planning}
-    \section{Conceptual Model}
-    
+    \section{Restricted Model} \label{}
+    Is a conceptual model where planning is state transition system that follows a set of restricting assumptions.
+    \begin{itemize}
+    \item A0: Finite system       (finitely many states, actions, events)
+    \item A1: Fully observable    (complete knowledge over the state)
+    \item A2: Deterministic       (each action has only one outcome)
+    \item A3: Static              (no exogenous events- no changes but the controller’s actions)
+    \item A4: Restricts goals    (existency a set of goal states Sg)
+    \item A5: Sequential plans    (a plan is a linearly ordered sequence of actions)
+    \item A6: Implicit time       (no time durations; linear sequence of instantaneous states)
+    \item A7: Off-line planning   (planner doesn’t know the execution status)
+    \end{itemize}
+
 
     \section{Classical Planning} \label{classical_planning}
+    Planning for restricted state transition system. One that meet all the restricted assumptions mentioned previously (A0 to A7). Classical planning abstract many of the complications of planning in the real world. This opened a gate for many algorithms and techniques to attempt at solving an easier version of complicated aiming to understand it better. It is clear to the planning community that it is unrealistic model and serves as bases for extensions to more realistic ones
         \subsection{PDDL}
+        Is a domain and problem description language, inspired by the famous STRIPS.  Serves as medium to giving a common widely accepted formalization of classical planning problems and domains. That is both readable by humans, yet formal enough to machines to understand it.  
         \subsection{State Space Planning}
-        \subsubsection{Forward Search}
-        \subsubsection{Backward Search}
+        State space search algorithms are perform the search in a space, where each node represents a state of the world and each arc in a state transition. The current plan corresponds to a path in the search space.
+        Forward search and backward search are to of the simplest planning algorithms. As their name suggest, forward search looks for a goal from an initial state. While backward search start from the goal and applies inverse op the planning operator tp produce subgoals satisfied by the initial state.
 
-    \section{Non-classical Planning}
-        \subsection{Heuristic Search Planning}
+        \subsection{None classical Planning}
+        Like classical planning it follows the restricted assumptions introduced earlier. And the same formalism. Yet, for mainly historical reasons, the nonclassical planning techniques brought a significant revival to classical planning and the size of problems that could be solved.  
+
+        \subsection{Relaxed Plan}
+        Is a plan that is generated while ignoring delete effects of actions. Making the problem a tiny bit easier to solve and usually used to give an estimate of how will a planning algorithm is doing. A typical use of a relaxed plan is to have a some sort of an informative heuristic by solving the relaxed problem. 
+    
+    \section{Planning Algorithms}
         \subsection{Graphplan}
+        A Plan generation technique "(Cite Blum and frust 95)" describes a planning generation technique based on planning graphs. At the time, this was much faster than any other planning technique known at the time. It is base on generation of a directed, layered graph. Nodes in that graph are one of tow types. Fact nodes or actions nodes. Layers alternate between fact and action layers. One fact together with one action layer constitute a time stamp. Each action layer contains all the applicable actions in that layer (which preconditions are satisfied by the previous fact layer and satisfy a certain mutex constraint). The next fact layer in turn will contain all of the previous facts plus all the effects of those actions. The first fact layer contains the initial state.
 
-\section{Planners}
-    \subsection{FF}
-    \subsection{MetricFF}
+        One crucial step that GraphPlan does while building the planning graph, is to insure mutual exclusion of the actions and facts in one layer. This is not needed when delete lists are ignored and will not be explained here.
+
+        GRAPHPLAN, expands the graph layer by layer till it reaches a fact layer the contains all goal facts. Then is starts a recursive backward search algorithm. The backward search considers, for each fact layer, all the achieving actions and selects the first one that does not have any mutex relation. If such an action does not exist, backtrack to the last fact. Otherwise, proceed with the next fact. When an achieving action has been selected for each fact, generate a new fact layer from all the preconditions of the selected actions. If this layer matches the initial state, return the plan. Note, that no backtracking would be required if delete lists are ignored.
+
+        \subsection{Heuristic Search Planning}
+
+        \subsection{FF}
+        \subsection{MetricFF}
 
 \section{The Scheduling Problem} \label{scheduling}
     \subsection{STN}
 
 \chapter{Temporal Planning} \label{temporal_planning}
     
-    Temporal planning is basically planning with time. In classical planning time has been ignored with restricted assumption A???. This allowed the study of a simpler problem, giving rise to great algorithms to tackle the abstracted classical planning problem. Yet in real world domains time could rarely be ignored. Temporal Planning considers the relaxation of the abstraction a step further. It introduces time to the problem. "Temporal Planning is the same problem as classical planning, but with time introduced" \citep{HalseyLongFox2003}.
+    Temporal planning is basically planning with time. In classical planning time has been ignored with restricted assumption A6. This allowed the study of a simpler problem, giving rise to great algorithms to tackle the abstracted classical planning problem. Yet in real world domains time could rarely be ignored. Temporal Planning considers the relaxation of the abstraction a step further. It introduces time to the problem. "Temporal Planning is the same problem as classical planning, but with time introduced" \citep{HalseyLongFox2003}.
     % Many temporal planners have attempted to solve this problem as whole. SAPA, TPSys, LPG 
     It seems when time is introduced, that the planning problem extends its focus from only reasoning about logical constraints, and finding set of actions that needs to achieve a goal, to also arranging this sequence in time as not to break any temporal constraints. This sounds a lot like what the study on scheduling is about as discussed briefly in section~\ref{scheduling}. Finding an order for executing a set of actions that need to use limited set of resources, is what the study of Scheduling is concerned with \citep{automated_planning}. Scheduling, has been an area of research for decades and it has many well developed schedulers written to solve the problem.
 
