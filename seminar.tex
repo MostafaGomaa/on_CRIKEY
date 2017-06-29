@@ -102,14 +102,18 @@
 
 \chapter{Introduction}
 
-Temporal planning is basically the same problem as classical planning but with time introduced. In Temporal planning classical planning moves closer to scheduling. The combination of ,tow already hard problems, only makes temporal planning harder. Many Approaches has been introduced to attempt of solving the temporal planning problem.
-CRIKEY the first temporal planner that separates the logical and temporal reasoning, is main focus of this seminar paper. It attempts to solve the temporal planning problem by breaking it down into two smaller sub-problems. As with the case with most interacting engineering problems, some issues arise and the separation is not always easily achievable.  
+Temporal planning is basically the same problem as classical planning but with time introduced. In Temporal planning, classical planning moves closer to scheduling. This combination of two already hard problems only makes temporal planning harder. Many approaches have been introduced to attempt to solving the temporal planning problem.
+CRIKEY (\citet{crikey_1} and \citet{crikey_2}) was the first temporal planner that separates the logical and temporal reasoning. It is the main focus of this seminar paper. It attempts to solve the temporal planning problem by breaking it down into two smaller sub-problems (a planning problem and a scheduling problem). As it is the case with most interdependent engineering problems, some challenges arise and the separation is not always easily achievable. This seminar paper focuses on these challenges, the technical aspects of CRIKEY, and how it solves these aspects, producing a valid temporal plan.
+
+In this Chapter we will introduce some of the basic concepts of classical and non-classical planning. The next Chapter will start with the motivation for and a brief description of the general aspects of Temporal Planning. Then we will move on to discuss the challenges arising from separating "time" away from the temporal planning problem . Chapter~\ref{crikey} will discuss how Crikey planner produced its temporal plans, with a special focus on its approach in tackling the problems arising from splitting the temporal and logical reasoning.
+
 
     \section{The Planning Problem} \label{the_planning_problem}
-    The planning problem is the problem of finding a sequence of actions that lead us from some initial state of the world to a state where some objectives are met. For humans, planning comes very natural. With the purpose of achieving a certain goal, choosing a specific sequence of actions from the space of all possible actions a human can perform, anticipating the outcome of each and ordering them as to meet or avoid some constraints, is a simple every day task for us. Automated Planning is area of Artificial Inelegance that is concerned with choosing and deliberating a sequence of actions, for their desired expected effects. It is concerned with questions like how to represent those actions, to how to model the world they interact with and how to reason about their effects, that would lead eventually to choosing and executing them.
-    "Planning is the reasoning side of acting" \citep{automated_planning}
-    \section{Restricted Model} \label{}
-    Is a conceptual model where planning is state transition system that follows a set of restricting assumptions.
+    The planning problem is the problem of finding a sequence of actions that lead us from some initial state of the world to a state where some objectives are met. For humans, planning comes very natural. Whenever a human deliberates a certain goal, choosing a specific sequence of actions, anticipating their outcomes, and ordering them in time as to meet or avoid some constraints, is a simple every day task for us. Automated Planning is an area of Artificial Intelligence that is concerned with the study of choosing and deliberating a sequence of actions for their desired and anticipated effects. It is concerned with questions like how to represent those actions, how to model the world they interact with, and how to reason about their effects, leading eventually to choose and execute them.
+    "Planning is the reasoning side of acting" \citep{automated_planning}.
+
+    \section{Restricted Model}
+    The Restricted Model is a conceptual model where planning is a state transition system that following a set of restricting assumptions. Those are \citep{automated_planning}.
     \begin{itemize}
     \item A0: Finite system       (finitely many states, actions, events)
     \item A1: Fully observable    (complete knowledge over the state)
@@ -123,67 +127,57 @@ CRIKEY the first temporal planner that separates the logical and temporal reason
 
 
     \section{Classical Planning} \label{classical_planning}
-    Planning for restricted state transition system. One that meet all the restricted assumptions mentioned previously (A0 to A7). Classical planning abstract many of the complications of planning in the real world. This opened a gate for many algorithms and techniques to attempt at solving an easier version of complicated aiming to understand it better. It is clear to the planning community that it is unrealistic model and serves as bases for extensions to more realistic ones
+    Classical Planning is a planning problem for a restricted state transition system. Classical planning meets all the restricted assumptions mentioned previously (A0 to A7). Classical planning abstracted many of the complications of planning in the real world. This opened the gate for many algorithms and techniques to attempt at solving an relaxed easier version of the problem. It is clear to the planning community, that it is an unrealistic model that serves mainly as basis for extensions to more realistic models.
+       
         \subsection{PDDL}
-        Is a domain and problem description language, inspired by the famous STRIPS.  Serves as medium to giving a common widely accepted formalization of classical planning problems and domains. That is both readable by humans, yet formal enough to machines to understand it.  
-        \subsection{State Space Planning}
-        State space search algorithms are perform the search in a space, where each node represents a state of the world and each arc in a state transition. The current plan corresponds to a path in the search space.
-        Forward search and backward search are to of the simplest planning algorithms. As their name suggest, forward search looks for a goal from an initial state. While backward search start from the goal and applies inverse op the planning operator tp produce subgoals satisfied by the initial state.
+        PDDL is a domain and problem description language, inspired by the famous STRIPS.It serves as a medium giving a widely accepted formalization of the classical planning problems and domains that is readable by humans, yet formal enough for machines to understand it.
 
-        \subsection{None classical Planning}
-        Like classical planning it follows the restricted assumptions introduced earlier. And the same formalism. Yet, for mainly historical reasons, the nonclassical planning techniques brought a significant revival to classical planning and the size of problems that could be solved.  
+        \subsection{State Space Planning}
+        State space search algorithms perform the search in a space where each node represents a state of the world and each arc a state transition. The current plan corresponds to a path in the search space.
+        Forward search and backward search are two of the simplest planning algorithms. As their name suggests, forward search looks for a goal from an initial state to a goal state. Backward search starts from the goal and applies inverse of the planning operators to produce subgoals satisfied by the initial state.
 
         \subsection{Relaxed Plan}
-        Is a plan that is generated while ignoring delete effects of actions. Making the problem a tiny bit easier to solve and usually used to give an estimate of how will a planning algorithm is doing. A typical use of a relaxed plan is to have a some sort of an informative heuristic by solving the relaxed problem. 
-    
-    \section{Planning Algorithms}
-        \subsection{Graphplan}
-        A Plan generation technique "(Cite Blum and frust 95)" describes a planning generation technique based on planning graphs. At the time, this was much faster than any other planning technique known at the time. It is base on generation of a directed, layered graph. Nodes in that graph are one of tow types. Fact nodes or actions nodes. Layers alternate between fact and action layers. One fact together with one action layer constitute a time stamp. Each action layer contains all the applicable actions in that layer (which preconditions are satisfied by the previous fact layer and satisfy a certain mutex constraint). The next fact layer in turn will contain all of the previous facts plus all the effects of those actions. The first fact layer contains the initial state.
+        Relaxed Plan is a plan that is generated while ignoring delete effects of actions. This makes the problem a easier to solve. Usually the relaxed solution can be used to guide the planning algorithm. A typical use of the relaxed plan is to have some sort of an informative heuristic by relaxing the problem. 
 
-        One crucial step that GraphPlan does while building the planning graph, is to insure mutual exclusion of the actions and facts in one layer. This is not needed when delete lists are ignored and will not be explained here.
+        \subsection{Non-classical Planning}
+        Like classical planning, Non-classical Planning meets the restricted assumptions introduced earlier. It also uses the same formalism. Yet, for mainly historical reasons, the non-classical planning techniques brought a significant revival to classical planning and the size of problems that could be solved. One of those techniques is GRAPHPLAN.  
+        
+        \subsection{GRAPHPLAN}
+        GRAPHPLAN is a plan generation technique \citep{Blum:1997:FPT:249379.249386} based on planning graphs. When it was introduced, it was much faster than any other planning technique known at the time. It is based on generation of a directed, layered graph. Nodes in that graph are one of two types, fact nodes and actions nodes. Layers alternate between fact and action layers. One fact together with one action layer constitutes a time stamp. Each action layer contains all the applicable actions in that layer (which have preconditions satisfied by the previous fact layer). The next fact layer in turn, will contain all of the previous facts plus all the effects of those actions. The first fact layer contains the initial state.
 
-        GRAPHPLAN, expands the graph layer by layer till it reaches a fact layer the contains all goal facts. Then is starts a recursive backward search algorithm. The backward search considers, for each fact layer, all the achieving actions and selects the first one that does not have any mutex relation. If such an action does not exist, backtrack to the last fact. Otherwise, proceed with the next fact. When an achieving action has been selected for each fact, generate a new fact layer from all the preconditions of the selected actions. If this layer matches the initial state, return the plan. Note, that no backtracking would be required if delete lists are ignored.
+        One crucial step that GraphPlan does while building the planning graph is to insure mutual exclusion of the actions and facts in one layer. This is not needed when delete lists are ignored and will not be explained here.
 
-        \subsection{Heuristic Search Planning}
-
-        \subsection{FF}
-        \subsection{MetricFF}
-
-\section{The Scheduling Problem} \label{scheduling}
-    \subsection{STN}
+        GRAPHPLAN expands the graph layer by layer till it reaches a fact layer that contains all goal facts. Then it starts a recursive backward search algorithm. The backward search considers for each fact layer all the achieving actions and selects the first one that does not have any mutex relation. If such an action does not exist, it backtracks to the last fact. Otherwise, it proceeds to the next fact. When an achieving action has been selected for each fact, it generates a new fact layer from all the preconditions of the selected actions. If this layer matches the initial state, it returns the plan. Note, that no backtracking would be required if delete lists are ignored.
+        
+        (The explanation in this section is summery to what came in \citep{FF})
 
 \chapter{Temporal Planning} \label{temporal_planning}
     
-    Temporal planning is basically planning with time. In classical planning time has been ignored with restricted assumption A6. This allowed the study of a simpler problem, giving rise to great algorithms to tackle the abstracted classical planning problem. Yet in real world domains time could rarely be ignored. Temporal Planning considers the relaxation of the abstraction a step further. It introduces time to the problem. "Temporal Planning is the same problem as classical planning, but with time introduced" \citep{HalseyLongFox2003}.
+    As mentioned before, temporal planning is basically planning with time. In classical planning time has been ignored with restricted assumption A6. This allowed the study of a simpler problem, giving rise to great algorithms to tackle the abstracted classical planning problem. Yet, in real world domains, time could rarely be ignored. Temporal Planning considers the relaxation of the abstraction one step further. 
     % Many temporal planners have attempted to solve this problem as whole. SAPA, TPSys, LPG 
-    It seems when time is introduced, that the planning problem extends its focus from only reasoning about logical constraints, and finding set of actions that needs to achieve a goal, to also arranging this sequence in time as not to break any temporal constraints. This sounds a lot like what the study on scheduling is about as discussed briefly in section~\ref{scheduling}. Finding an order for executing a set of actions that need to use limited set of resources, is what the study of Scheduling is concerned with \citep{automated_planning}. Scheduling, has been an area of research for decades and it has many well developed schedulers written to solve the problem.
+    It seems, when time is introduced, that the planning problem extends its focus from only reasoning about logical constraints, and finding set of actions that needs to achieve a goal, to also arranging this sequence in time as not to break any temporal constraints. This sounds a lot like what the study on Scheduling is concerned with. Finding an order for executing a set of actions that need to use limited set of resources is what the study of Scheduling is concerned with \citep{automated_planning}. Scheduling has been an area of research for decades and it has many well developed schedulers written to solve the problem.
 
-    Looking from this perspective, What if we could solve the each of those problems independently. What if we could find away to separate time from the problem to be able to use the already written classical planners on the smaller problem and then care about fitting them into the time constraints later on. As it has been with the engineering approach for years, to break down the complicated problems into its smaller constituting problems and solve each alone, it has also been clear that the problem separation is not easily achievable. There is usually a margin that the problems are interdependent, and cannot be resolved one after the other. The problems interact too much or too coupled, that solution of one of the problems highly dependent on the solution of the other.
+    Looking from this perspective - what if we could solve each of those problems independently! What if we could find a way to separate time from the problem to be able to use the already written classical planners on the smaller problem and then care about fitting them into the time constraints later on. It has been a common engineering approach for years, to break down the complicated problems into its smaller constituting problems and solve each alone.Yet, it also has been clear that the problem separation is not easily achievable. There is usually a margin that the problems are interdependent and cannot be resolved one after another. The problems interact too much or are too coupled, that the solution of one of the problems is highly dependent on the solution of the other.
 
-    There has been already a great deal of research oriented to how to solve the temporal planning problem by separating it into classical planning and scheduling when possible and solve each independently, detecting when the problems are too tightly coupled to separate and finding clever ways to go about these cases.
+    There has been already a great deal of research oriented to how to solve the temporal planning problem by separating it into classical planning and scheduling when possible and solve each independently, detecting when the problems are too tightly coupled to separate and find clever ways to go about these cases.
 
-    CRIKEY, the system discussed in this seminar paper does exactly that. Details on how it attempts to separate, detect and solve the temporal planning problem will be detailed in Chapter~\ref{crikey}. In this Chapter, the focus will be on the more general and representational aspects of the temporal planning, as well as, a broader look into the problems arise when attempting to isolate the planning and scheduling . How CRIKEY tackles those problems is deferred Chapter~\ref{crikey}.  
+    CRIKEY, the system discussed in this seminar paper does exactly that. Details on how it attempts to separate, detect and solve the temporal planning problem will be detailed in Chapter~\ref{crikey}. In this Chapter, the focus will be on the more general and representational aspects of the temporal planning, as well as a broader look into the problems arise when attempting to isolate the planning and scheduling. How CRIKEY tackles those problems is deferred to Chapter~\ref{crikey}.  
 
     
     \section{PDDL2.1} 
-    PDDL2.1 is domain and problem description language, that extends the modelling power of PDDL \citep{} to meet some of challenges in modelling real world problems. One of those challenges is to have some notion of time.There have been many models tackling this problem, yet the most common is for actions to have a duration. PDDL2.1 does exactly that. It introduced away for formalizing durative actions /citep{}.
-    Moreover, since actions are no longer instantaneous as in PDDL, it is no longer sufficient to assume that preconditions or effects would also apply instantaneously. In the real world scenario logical changes (i.e. conditions required or effect applied) can occur at point of time during the action's execution. Ranging from, only occurring at certain points of an action's execution, to holding over the whole period of the action, it is clean that more elaborate approach for representing when logical changes occur is needed. 
-    PDDL2.1 allow for actions to have effects or preconditions apply either at the start or at the end of an action. Furthermore, it allows to have conditions hold over the whole period of an action, called invariant.
+    PDDL2.1 \citep{Fox:2003:PEP:1622452.1622454} is a domain and problem description language that extends the modelling power of PDDL \citep{AICPub1821:1998} to meet some of the challenges in modelling real world problems. One of those challenges is to have some notion of time. There have been many models tackling this problem, yet, the most common is for actions to have a duration. PDDL2.1 does exactly that. It introduced a way for formalizing durative actions.
+    Moreover, since actions are no longer instantaneous as in PDDL, it is no longer sufficient to assume that preconditions or effects would also apply instantaneously. In real world scenarios, logical changes (i.e. conditions required or effect applied) can occur at any point of time during an action's execution. Ranging from only occurring at certain points of an action's execution, to holding over the whole period of the action, it is clear, that a more elaborate representation of when logical changes occur, is needed. 
+    PDDL2.1 allow for actions to have effects or preconditions apply either at the start or at the end of an action. Furthermore, it allows to have conditions, holding over the whole period of an action, called invariant.
 
-    It might still seem that some domains might require a more complex model of time, yet a simple compilation of the domain and the use of dummy actions and predicates can give great power. Modelling of, Logical changes happening at a given point during the actions (that is neither the start nor the end), or more complex temporal constraints (like enforcing actions to partly overlap), becomes possible.
+    It might still seem that some domains might require a more complex model of time, yet a simple compilation of the domain and the use of dummy actions and predicates can give great power. Modelling of logical changes happening at a given point during the actions (that is neither the start nor the end) or more complex temporal constraints (like enforcing actions to partly overlap) becomes possible.
 
         \subsection{Temporal Constraints}
         This section introduces how temporal constrains can be represented in PDDL2.1. 
-        It attempts to summarize a section, that carries the same name, in the work of \citet{HalseyLongFox2003}. All the figures and arguments here are credited to \citep{HalseyLongFox2003}.
+        It attempts to summarize a section, that carries the same name, in the work of \citet{Isolating}. All the figures and arguments here are credited to them.
 
-        In PDDL2.1, there is no explicit way to represent temporal constraint.
-        It is only possible implicitly through the use of durative actions, which is the only way to get temporal information into the plan.
-        Whether those durative actions are actually meant to account for a real desirable action taking place, or just used as a dummy action to ensure a certain temporal constrain, is secondary in this discussion.
-        There is mostly two important temporal constraint to consider here, the maximum and minimum time by which an action x follows an action y.
-        All other constraint that do not use disjunction are specialised cases of these.
-        Each of those constraints can be represented in two different ways. namely "clipping"  or "enveloping". 
+        In PDDL2.1, there is no explicit way to represent temporal constraint.It is only possible implicitly through the use of durative actions, which is the only way to get temporal information into the plan. Whether those durative actions are actually meant to account for a real desirable action taking place, or used as a dummy action to ensure a certain temporal constrain, is secondary in this discussion. There is mostly two important temporal constraint to consider here, the maximum and minimum time by which an action x follows an action y. All other constraint that do not use disjunction are specialised cases of these. Each of those constraints can be represented in two different ways. namely "clipping"  or "enveloping". 
 
-        Figure \ref{fig:maximum} shows how to represent the maximum difference constraint \(x-y<=b\) (i.e, the maximum time allowed for \(x\) to follow \(y\)). Notice that when expressing a maximum constraint, regardless of the representation, the direction of the arrows is from the start of the durative (potentially dummy) action to the first action, and from the second action to the durative (potentially dummy) action. The ordering of the actions is enforced here using logical constraints (i.e. By manipulating the preconditions, invariants and effects of actions to enforce the order). Note that, with the maximum constraint, there is no minimum ensured. Nothing would stop the second action from being ordered before the first.
+        Figure \ref{fig:maximum} shows how to represent the maximum difference constraint \(x-y<=b\) (i.e, the maximum time allowed for \(x\) to follow \(y\)). Notice that when expressing a maximum constraint, regardless of the representation, the direction of the arrows is from the start of the durative (potentially dummy) action to the first action, and from the second action to the durative (potentially dummy) action. The ordering of the actions is enforced here using logical constraints (i.e. by manipulating the preconditions, invariants and effects of actions to enforce the order). Note, that with the maximum constraint, there is no minimum ensured. Nothing would stop the second action from being ordered before the first.
         
         \begin{figure}[h]
             \subfloat[Expressing Maximum Elapsed time with Clipping]
@@ -219,7 +213,7 @@ CRIKEY the first temporal planner that separates the logical and temporal reason
         \end{figure}
 
 
-        The more interesting cases would be when both constraints needs to be modelled at the same time Figure \ref{fig:maxandmin}. 
+        The more interesting cases would be when both constraints were to be modelled at the same time Figure \ref{fig:maxandmin}. 
 
         \begin{figure}[!]
             \centering    
@@ -229,14 +223,13 @@ CRIKEY the first temporal planner that separates the logical and temporal reason
         \end{figure}
 
         \subsubsection{Analysis of Representations}
-        The two representation "clipping" vs "enveloping", though syntactically equivalent, they are not always semantically equivalent.
-        Some domains would correspond in its encoding to one representation but not the other, even though, it would seem equivalent in some other domains. Further more, In one representation,
-        enveloping, the duration of the durative (potentially dummy) action, seems to depend on the duration of the actions it envelops (namely, the content actions). This results in a tight coupling between the content actions and the constraint they are fulfilling. Whilst in clipping, this is not the case. In clipping, planning and scheduling problems do not interact in a complex manner, resulting for both problems to be loosely coupled.
-        To push it even further, what if those durative (potentially dummy) actions are not really dummy at all. What if they are actions with a specific duration, conditions and effects, that the content actions can only be executed during them. In this case, the problem just looks like a maximum constraint problem, but in fact it in not a maximum problem at all. In this case we have very little control over the duration of the enveloping action. The specific arrangement of those actions, envelope and content, need to be ensured by the planner as not to break any temporal constraint.
+        The two representation "clipping" vs "enveloping", though syntactically equivalent, are not always semantically equivalent.
+        Some domains would correspond in its encoding to one representation but not to the other, even though, it would seem equivalent in some other domains. Further more, in the envelop representation, the duration of the durative action (potentially dummy) seems to depend on the duration of the actions it envelops (namely, the content actions). This results in a tight coupling between the content actions and the constraint they are fulfilling. Whilst in clipping, this is not the case. In clipping, planning and scheduling problems do not interact in a complex manner, resulting for both problems to be loosely coupled.
+        To push it even further, what if those durative (potentially dummy) actions are not really dummy at all. What if they are actions with a specific duration, conditions and effects, that the content actions can only be executed during them. In this case, the problem just looks like a maximum constraint problem, but in fact it is not a maximum problem at all. In this case we have very little control over the duration of the enveloping action. The specific arrangement of those actions, envelope and content, need to be ensured by the planner as not to break any temporal constraint.
 
-         In summery, translating the problem from one representation to the other, highly depends on the semantics of the domain, and not always possible.
+         In summary, translating the problem from one representation to the other highly depends on the semantics of the domain and are not always possible.
         
-        On the bright side, we have just made clear when exactly, the planning and scheduling problems in temporal planning, are too tightly coupled to separate. Where the logical structure and the temporal constraint interact and can not be solved separately. This gives CRIKEY ,and similar systems, the inspiration for when to would it make sense to separate the problems and solve each alone, and when would the separation effect the problem description in essence, and it would be required to find more clever ways to solve both together.
+        On the bright side, we have just made clear when exactly, the planning and scheduling problems in temporal planning, are too tightly coupled to separate, where the logical constraints and the temporal constraint interact and can not be solved separately. This gives CRIKEY and similar systems the inspiration for when it would make sense to separate the problems and solve each of it alone, and to when the separation would effect the problem description in essence, and it would be required to find more clever ways to solve both together.
 
 
 
@@ -245,13 +238,13 @@ CRIKEY the first temporal planner that separates the logical and temporal reason
 
     Section~\ref{motivation} provides some insight on a predecessor system, problems with it and what motivates CRIKEY.
     Section~\ref{tech} provide some technical specification on the planning and scheduling technologies used at the heart.
-    Section~\ref{workings} overview of the system architecture, explanation of how and when it separates the problems when possible, how it detects the coupling of the  problems and how it deals with it.
+    Section~\ref{workings} overview of the system architecture, explanation of how and when it separates the problems when possible, how it detects the coupling of the problems, and how it deals with it.
     
     \section{motivation} \label{motivation}
     % review the system that was developed before crikey and decribe where the limitation was.Also the architecture of the system could be here
-    A system was developed in "(CITE)" for separating out the temporal and logical reasoning requires in temporal planning. Figure \ref{architecture} summarize the main idea of the system. Given a temporal domain and problem description in PDDL2.1. A translator, separates out the temporal aspects translating it into a PDDL classical planning problem and domain that preserves the key temporal relations. 
-    The temporal information about actions duration are stored in a separate file. The translator used was the same as in LPGP "(CITE)". It splits a durative actions into three instantaneous actions, modelling the at start conditions and effects, invariants and at end conditions and effects respectively. Later, the translated PDDL problem was solved with a classical planner producing a totally ordered plan.
-    From the totally ordered plan, a partially ordered plan is lifted and feed, together with the duration file, separated at the begging, into a Simple Temporal Network. This schedules the plan by calculating relative and actual timing of actions. The product is a Temporal Plan.
+    A system was developed in \citep{Halsey2003TemporalPW} for separating out the temporal and logical reasoning requires in temporal planning. Figure \ref{architecture} summarizes the main idea of the system. Given a temporal domain and problem description in PDDL2.1. A translator separates out the temporal aspects translating it into a PDDL classical planning problem and domain that preserves the key temporal relations. 
+    The temporal information about actions duration are stored in a separate file. The translator used was the same as in LPGP \citep{Long:2003:EGF:3036969.3036977}. It splits a durative action into three instantaneous actions, modelling the at start conditions and effects, invariants and at end conditions and effects respectively. Later, the translated PDDL problem was solved with a classical planner producing a totally ordered plan.
+    From the totally ordered plan, a partially ordered plan is lifted and fed, together with the duration file, separated at the begging, into a Simple Temporal Network. This schedules the plan by calculating relative and actual timing of actions. The product is a Temporal Plan.
 
     \begin{figure}[h]
         \centering    
@@ -260,16 +253,16 @@ CRIKEY the first temporal planner that separates the logical and temporal reason
          \label{fig:architecture}
     \end{figure}
     
-    This system always separates the planning and scheduling problem, and solves each sub problem independently, as proposed in chapter~\ref{temporal_planning}. This turns out to be a good idea for a variety of domains (including all problems in International Planning Completion 2002) "CITE". In these domains the solution plan could always be sequentialised (i.e.\ executed one action after the other). Concurrency was an optimization choice of the planner in case actions don't interfere. Yet, in those domains, there was no concurrency enforced by the domains itself. In those domains, the temporal and logical constraints are loosely coupled and the problems do not deeply interact. 
+    This system always separates the planning and scheduling problem and solves each sub problem independently, as proposed in chapter~\ref{temporal_planning}. This turns out to be a good idea for a variety of domains (including all problems in International Planning Completion 2002). In these domains the solution plan could always be sequentialised (i.e.\ executed one action after the other). Concurrency was an optimization choice of the planner in case actions don't interfere. Yet, in those domains there was no concurrency enforced by the domains itself. In those domains, the temporal and logical constraints are loosely coupled and the problems do not deeply interact. 
 
-    However, Some domains exists where this is not the case. Where it is necessary to perform some actions in parallel, and where the choice of actions depends on both their logical and temporal merits. In such domains the planning and scheduling problems are tightly coupled in the manner demonstrated in chapter~\ref{temporal_planning}. In these domains, the planner of predecessor of CRIKEY, would produce plans that the scheduler can not schedule. The un-schedulable plans comes from temporal constraint in the problem that are not met. The planner here lacks any temporal knowledge, and only makes its choices based on the logical constraints.
+    However, Some domains exist where this is not the case. Where it is necessary to perform some actions in parallel, and where the choice of actions depends on both their logical and temporal merits. In such domains the planning and scheduling problems are tightly coupled in the manner demonstrated in chapter~\ref{temporal_planning}. In these domains, the planner of predecessor of CRIKEY, would produce plans that the scheduler can not schedule. The un-schedulable plans comes from temporal constraint in the problem that are not met. The planner here lacks any temporal knowledge, and only makes its choices based on the logical constraints.
 
     This is where CRIKEY comes. CRIKEY basically inherits the same basic architecture for separating and solving the planning and scheduling problems independently when possible. Moreover, it always tries to detect cases where the problems are tightly coupled and solves them together. Details on how CRIKEY detects those cases and what does it do when it finds them are in the main focus of this chapter.
 
     \section{Technical Specification} \label{tech}
     CRIKEY planner was implemented in java.
-    The planning algorithm implemented in cirkey is forward chaining heuristic planner.
-    The implementation is based very closely on MetricFF "CITE".
+    The planning algorithm implemented in CRIKEY is forward chaining heuristic planner.
+    The implementation is based very closely on MetricFF \citep{hoffmann:ecai-02}.
     As in MetricFF, it uses a relaxed plan length as a heuristic, helpful actions (which appear in the first layer of the relaxed plan) to aid its action selection and performs Enforced Hill-Climbing.
     Unlike MetricFF, upon finding a plateau in the search space, it performs Best First Search to exit the plateau.
     This means expanding the same states as FF at the start, but if no exit found, will try those states that move away from the goal.
@@ -278,11 +271,11 @@ CRIKEY the first temporal planner that separates the logical and temporal reason
     CRIKEY, separates the durative actions (when necessary) into two instantaneous actions.
     At start and at end instantaneous actions.
     % During the construction of the relaxed plan
-    Invariants of the durative actions, become preconditions of the start and end spontaneous actions. Unless, if that invariant was achieved by the at start effects of the durative actions, it only become a condition of the end spontaneous action. For each state, the planner keeps a list of invariants that holds in that state. Actions that delete an invariant are considered inapplicable in this state. When an action is chosen, its invariants are either added to (if it was a start action) or removed from (if it was an end action) the invariants list.
+    Invariants of the durative actions, become preconditions of the start and end spontaneous actions. Unless that invariant was achieved by the at start effects of the durative actions, it only becomes a condition of the end spontaneous action. For each state, the planner keeps a list of invariants that holds in that state. Actions that delete an invariant are considered inapplicable in this state. When an action is chosen, its invariants are either added to (if it was a start action) or removed from (if it was an end action) the invariants list.
 
-    Another list keeps track of semi-complete actions. Those that the start action is chosen, yet the end action is not. A final state could only be achieved if this list is empty and the goal is reached. The start actions are given a cost equal to its duration and end actions are given a small tolerance value (to motivate their selection in case they were not selected for some useful effect).
+    Another list keeps track of semi-complete actions. Those that their start action has been chosen, yet the end action is not. A final state could only be achieved if this list is empty and the goal is reached. The start actions are given a cost equal to its duration and end actions are given a small tolerance value (to motivate their selection in case they were not selected for some useful effect).
 
-    This list also comes in handy during the extraction of the heuristic value from the relaxed plan. If during graph plan generation, a start action was choose for its desired effect, but not its end action, only the start action will show in the relaxed plan. However if later, during plan relaxed plan extraction this start action was selected, then its end action needs to also be selected, increasing the size of the relaxed plan by one.
+    This list also comes in handy during the extraction of the heuristic value from the relaxed plan. If during graph plan generation, a start action was chosen for its desired effect, but not its end action, only the start action will show in the relaxed plan. However if later, during plan relaxed plan extraction this start action was selected, then its end action needs to also be selected, increasing the size of the relaxed plan by one.
 
     CRIKEY does not allow negative conditions in a durative action.
 
@@ -319,7 +312,7 @@ CRIKEY the first temporal planner that separates the logical and temporal reason
              \label{fig:none_env_selection}
         \end{figure}
 
-         Follows is the reasoning presented at "CITE". "s1,s2 and s3 are three states immediately before a start of the action, immediately after and immediately after the end of the action. An action applicable in s2 but not s1 must have been achieved by the at start add effect (since there is no negative conditions it could not have been achieved by an at start delete effect). Taking it further, there are no actions the could be applied in s2 and not s3 which could not have been applied in s1, apart from those achieved by the at start add effects and then deleted by the at end delete effects. Alternatively, an action could be achieved by the at start effect, and the effects of this action needed to achieve the end conditions. They are called potential envelopes since there is no effort (at this moment) to find out if there are any content actions that must go in these envelops"
+         Follows is the reasoning presented at \citep{crikey_1}. "s1,s2 and s3 are three states immediately before a start of the action, immediately after and immediately after the end of the action. An action applicable in s2 but not s1 must have been achieved by the at start add effect (since there is no negative conditions it could not have been achieved by an at start delete effect). Taking it further, there are no actions the could be applied in s2 and not s3 which could not have been applied in s1, apart from those achieved by the at start add effects and then deleted by the at end delete effects. Alternatively, an action could be achieved by the at start effect, and the effects of this action needed to achieve the end conditions. They are called potential envelopes since there is no effort (at this moment) to find out if there are any content actions that must go in these envelops"
 
           To recap, actions which allow other actions to happen only during their duration is what we are looking for. This formalization of these enveloping actions is described in figure.
           \begin{figure}[h]
@@ -340,13 +333,16 @@ CRIKEY the first temporal planner that separates the logical and temporal reason
         \end{figure}
 
         \subsubsection{The Scheduler}
-        After the partial order lifter, a modified version of "CITE", produces a partial order plan. It is passed through a Simple Temporal Network that uses Floyd-Warshall's algorithm to compute the actual timing of actions, producing a temporal plan.
+        After the partial order lifter (modified version of \citep{rintegrating})  produces a partial orders plan. It is passed through a Simple Temporal Network that uses Floyd-Warshall's algorithm to compute the actual timing of actions, producing a temporal plan.
 
     \section{Conclusion} 
-
+    Crikey was the first planner to successfully managed to generate valid temporal plans by separating the logical and temporal reasoning. It was demonstrated how Crikey managed to do that. It might have suffered from several limitation. Although it will not find an optimal plan (i.e. one that exploits all concurrency possible) it is complete and sound. Crikey opened the door for an area of research that follow. Some of the direct predecessors of CRIKEY is POPF and CRIKEY3.
 
 
 %%% End of seminar %%%
+
+
+\listoffigures
 
 \bibliographystyle{plainnat}
 \bibliography{seminar}
