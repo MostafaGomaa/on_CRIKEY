@@ -1,0 +1,70 @@
+Review for Paper 8
+
+
+Summery:
+This paper is ment to summarize and describes ROSplan, a Framework for embedding planning into ROS. It starts off by explaining the concepts necessary for understanding ROSplan and what ROS is. Starting of Explaining the basics of a planing problem moving into more complex concepts like HTN, BDI and Plan repair and the different models of interaction between agent. The paper Finishes with an very brief assessment of ROSplan
+
+
+
+Likes:
+Having an abstract helps orient the reader for the span of the paper and it was nice to have it here (even though it might be improved a bit in my opinion). Chapter 3, Which contains the main scope of the seminar paper, was well written. The flow of ideas was significantly more clear than the previous tow introducing chapters.  I liked the use of subsections in chapter 3 to small focused pieces (which would be helpful in the previous chapters too). Referencing to papers only with the number "[1]" and without mentioning the paper name is sometimes space saving, yet sometimes a good description of what was referenced was missing.  
+
+
+
+
+
+Major Comments:
+-- On abstract and introduction: 
+	The flow of ideas was a little uneasy for me to follow (specially if I was a novel reader). For example,
+
+	In introducing the competitions that exist in mobile robotics, I missed the point of why those competitions exist even..Why are they impotent or why are you presenting them at this point (specially, that about 10 lines were spent on that). It would be fare more helpful for me to know for example that they are meant to exploit and expand the area of research on planning. 
+	It seems to me that the main purpose for this was to group them afterwards with the following paragraph concluding that they all share the common need/structure of "achieving a goal" and "planning to how to do that". It is a great transition but I think more attention could have been given into explaining one or tow of those competitions, The purpose of it and what makes it different for example than real life applications, that you had to mention them at all. Briefly, I was a bit confused as which idea were ment to be asserted by those examples, specially that there was not enough details about any of the them nor why they should matter to the reader at this point. Furthermore, maybe a reference for more would be nice so the reader can read more about them if interested.
+
+	In the second paragraph in the intro, This is where finally the idea behind using the examples show and  
+	the concepts and definition of planning and what is an agent are introduced. Its a bit under done in my opinion. The 2 sentences are a little too compressed and none self explanatory.  
+
+
+	-I think planning (The problem of planning) was not toughly introduced at this point to allow the reader to build a mental image in order to put the following in context. 
+
+--Chapter 2:
+
+	--The introducing sentence is quite unclear and non explanatory. What are those requirements implied by. At this point I have no idea of what coming other than its requirements. Is it required by the problem itself or the environment 
+	-Why is it a complicated task. What do is meant by "simplicity", (I think what is meant is an abstraction of some aspects of the problem, using some assumptions to make a simpler problem easier to solve). That is what I think you meant, yet it was not clear at all. It would be really nice to have had mentioned here the concept about the restrictive assumptions and why are they made.
+
+	in 2.2 "[6] distinguishes between exploiting and establishing planning and execution context. " not sure where is the 2 things distinguished.exploiting and establishing planning Vs execution context. or exploiting and establishing planning.
+
+
+--Chapter 3: 
+
+- "endowed with shared objectives and representations by a single [...] team of designers " not sure i get this. And there is a missing reference I am guessing
+
+-" Section 3.1 will focus on general continuous, distributed planning". and then the section name is
+	3.1 Cooperative Distributed Planning. Is this intended?
+
+- ROSplan. Would have been nice to talk a bit summarize example to put things in context.
+
+
+- I think the section about ROSplan is fare too short. Some concepts introduced earlier are not used at all here which makes me wonder why was in necessary. At least a Graphic from the original paper of the architecture would be very helpful 
+
+
+
+
+
+
+Minor Comments:
+- a table of content would be nice to see the chapters structure
+
+- I don't think its quite accurate to say that a robot and an agent and equivalent terms. A reasoning agent 
+one of the robots components not itself. It is like saying a human is a brain instead of having one.
+
+- As a general comment. Its much easier to follow sentences that start with the [sdfs;kdjfl;akjsdfl;kjadfl;k]
+the evolution of concepts to fit more complex scenarios is presented
+
+- "Designing an AI" sounds a bit strange
+
+- Starting the sentence with the reference like in "[6] distinguishes between exploiting and ..." is a bit odd. Maybe simply saying "In [6] " before would be nicer.
+
+
+
+
+

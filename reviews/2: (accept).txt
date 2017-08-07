@@ -1,0 +1,12 @@
+2: (accept)
+In this seminar paper the author explains the basic concept of temporal planning and describes the first temporal planner CRIKEY. He first introduces some basic knowledge like, what (classical) planning is, a planning language (PDDL) and an planner (GRAPHPLAN). He then explains the difficulties with temporal planning and how PDDL2.1 deals with it. And in the end presented the CRIKEY planner, going into detail about its approach to deal with temporal actions. 
+The paper is easily digestible. The author presents the problem discussed in the paper nicely and maintains a good structure of topics throughout. He starts with a broad scope and the goes into detail later.
+I personally would have liked a example to go with the explanation of PDDL2.1 and CRIKEY. This would have further increased the ease of understanding more formal parts of the paper. However, this my only major concern. There were however some typos and minor formulations errors:
+p.1 “to attempt to solving” -> “to attempt to solve”
+(p.3 Three sentences in a row starting with “Classical planning”)
+(p.4 Two sentences in a row ending with “is concerned with”)
+p.5 “There is mostly two” -> “There are mostly two”
+p.9 “Figure ??”
+p.9 lower case headline “motivation” -> “Motivation”
+p.13 “”s1,s2 and s3” -> “s1,s2 and s3”
+p.14 “area of research that follow.” -> “area of research that followed.”
