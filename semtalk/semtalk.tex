@@ -1,0 +1,250 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   ,=³ .### #######. .#####.  .#####.   #####.##. #. ######## ## Rheinisch-
+%  [==].###   ##   ## ##   ##  ##   ##   ##  ##'##.##.## ## ## ## Westfälische
+%   //l###    ##   ## ####. ' ##       @ #####' '####### ## ##### Technische
+%  [==]##     ##|=##   ##=>#  ##         ##  ##  '##'### ## ## ## Hochschule
+%  [==]###    ##   ## . '#### ##  '###   ##   ##  '# '## ## ## ## Aachen
+%  [==]'###   ##   ## ##   ##  ##   ##
+%  o^^o '### #######' '#####'O '#####'       http://kbsg.rwth-aachen.de/
+%  Knowledge  Based   Systems   Group
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{beamer}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Mode
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<presentation>
+{
+  \usetheme[hideallsubsections]{Aachen}
+  % \usetheme{Luebeck}
+  % oder ...
+  %%
+  \setbeamercovered{transparent}
+  % oder auch nicht
+}
+
+
+%%%%%%%%%%%%%
+\newcommand{\topalign}[1]{%
+  \begin{columns}%
+    \begin{column}[T]{0pt}%
+      \vspace*{\textheight}%
+    \end{column}%
+    \begin{column}[T]{\textwidth}%
+      #1%
+    \end{column}%
+  \end{columns}%
+}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Packages
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% As to have german umlauts etc use utf (you might need 
+%% to tell your editor to save file with this encoding!)
+\usepackage[utf8]{inputenc}
+\usefonttheme[onlymath]{serif}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+%\usepackage{psfrag}
+%\usepackage{rotating}
+%\usepackage{xmpmulti}
+%\usepackage{pgfarrows}
+%\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{hyperref}
+%% program listings and such things
+%\usepackage{algorithmic}
+%\usepackage{program}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Macros/Defs
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\colorlet{lightblue}{blue!50!white}
+
+\def\blue#1{\color{blue}#1\color{black}}
+\def\lightblue#1{\color{lightblue}#1\color{black}}
+%\def\lightblue#1{\color{blue}\begin{colormixin}{10!white}#1\end{colormixin}\color{black}}
+\def\red#1{\color{red}#1\color{black}}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Title Information
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Seminar Talk]{An Interesting Seminar Topic}
+
+\author[ShortAuthor]{Full Author}
+\institute[RWTH Aachen University]
+{ Knowledge-Based Systems Group\\
+  RWTH Aachen University\\
+  {mail@domain.tld}
+}
+
+\date[shortdate] % (optional, sollte der Tag des Vortrags sein)
+{Name und Art der (Pro)Seminar-Veranstaltung}
+
+\subject{Subject}
+
+\pgfdeclareimage[height=0.5cm]{university-logo}{pics/logo_blau_rechts}
+\logo{\pgfuseimage{university-logo}}
+
+%%% Soll vor jeder Section eine ToC Folie erscheinen?
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% make the title area
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Begin Document
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \titlepage
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IntroSec}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{The Frametitle}
+  \begin{itemize}
+  \item an item
+  \item another item
+  \item ...
+  \item give an introduction to the topic!
+  \end{itemize}
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{MainSec}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Some Tips}
+  %% 
+  \begin{itemize}
+  \item Have page numbers on the slides!\\
+    it helps the audience to refer to specific\\
+    points of the talk in the Q\&A session
+  \item Don't overfill slides
+  \item ...
+  \end{itemize}
+  %% 
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Yet Another Slide}
+  %%
+  \begin{alertblock}{You can use columns}
+    you can use columns to organize a slide\\
+    see the source for details ...
+  \end{alertblock}
+  \vspace*{.5cm}
+  \begin{columns}
+    \begin{column}{.39\textwidth}
+      1st column\\
+      (39\% width)
+      \begin{itemize}
+      \item Item1
+      \item Item2
+      \item ...
+      \end{itemize}
+    \end{column}
+    \hfill
+    \begin{column}{.59\textwidth}
+      2nd column (59\% width)\\
+      this one has a logo in it (centered).
+      \begin{center}
+        \includegraphics[width=.3\textwidth]{pics/logo_KBSG}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Use Structure!}
+  %%
+  \begin{block}{This is a (normal) block}
+    \begin{itemize}
+    \item it helps to structure a slide
+    \item you can use it to group things
+    \end{itemize}
+  \end{block}
+  %%
+  \vspace*{.5cm}
+  %%
+  \begin{exampleblock}{This is an exampleblock}
+    it looks different than a normal block
+  \end{exampleblock}
+  %%
+  \begin{alertblock}{and this is an alertblock}
+    it is different from the two above
+  \end{alertblock}
+  %%
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Use Examples!}
+  %%
+  \begin{description}
+  \item[pics] say more than a thousand words
+  \item[exp] examples keep the audience interested
+  \end{description}
+  %%
+  \vspace*{.5cm}
+  %% 
+  \includegraphics[width=0.3\textwidth]{pics/logo_RWTHAachenUniversity}
+  %% 
+  \vspace*{.5cm}
+  %% 
+  \centerline{
+    \href{run:./video.sh}{\beamergotobutton{play video}}  
+  }
+  %%
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{LastSec}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Summary}
+  %%
+  Conclude with a summary and maybe an outlook.
+  %% 
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  End Document
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
